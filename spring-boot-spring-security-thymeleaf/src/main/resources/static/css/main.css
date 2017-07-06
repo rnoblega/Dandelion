@@ -1,0 +1,184 @@
+h1{
+	color:#0000FF;
+}
+
+h2{
+	color:#FF0000;
+}
+
+footer{
+    margin-top:60px;
+}
+
+/* Color de la barra de navegacion del login */
+#header-nav-bar{
+	
+	background:#f44336;
+}
+
+/* Color del elemento activo de la barra de navegacion */
+#navbar > .navbar-nav > .active > a{
+	
+	background:#d06b64;
+	
+}
+
+#titulo-header{
+	
+	color: black;
+	
+}
+
+/* Botones de la pantalla login y registration */
+
+.btn-lg , .btn-lg:visited{
+	
+	background:#f44336;
+	
+}
+
+/* Color del sombreado cuando se pasa el mouse */
+
+.btn-lg:hover{
+
+	background-color:#d06b64;
+	color: black;
+	
+}
+
+
+.btn-primary, .btn-primary:visited, .btn-primary:focus, .btn-primary:active{
+	
+	background-color: #f44336!important;
+	border-color: inherit!important;
+	outline:0!important;
+	
+}
+
+.btn-primary:hover{
+	
+	background-color:inherit!important;
+	border-color: black!important;
+	color: black!important;
+	
+}
+
+.btn-info, .btn-info:visited, .btn-info:focus{
+	
+	background-color: #f44336;
+	border-color: inherit;
+	outline:0;
+
+}
+
+.btn-info:hover{
+	
+	background-color:inherit;
+	border-color: inherit;
+	
+}
+
+#btnTrabajar:hover, #btnEditar:hover, #btnEliminarProyecto:hover{
+	background-color:#ff352b;
+	
+}
+
+
+#formTrabajar{
+	float: left;
+	width: 15%;
+}
+
+#formEditar{
+	float: left;
+	width: 15%;
+}
+
+#formEliminar{
+	float: left;
+	width: 15%;
+}
+
+#containerOpciones{
+	
+	with: 15%;
+	padding: 0px 0px 0px 51px;
+}
+
+
+#mySidebar{
+    background: #f44336; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#e82315, #f44336); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#e82315, #f44336); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#e82315, #f44336); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#e82315, #f44336); /* Standard syntax (must be last) */
+}
+
+.w3-jumbo{
+	
+	color: #ff0000;
+	
+}
+
+.item-tiporol {
+	font-size: 14px;
+	left: -8px;
+	height: 60px;
+	width: 555px;
+}
+
+.error{
+	color: red;
+	
+     animation:signup-response 2s 1;
+    -webkit-animation:signup-response 2s 1;
+    animation-fill-mode: forwards;
+
+    animation-delay:0s;
+    -webkit-animation-delay:0s; /* Safari and Chrome */
+    -webkit-animation-fill-mode: forwards;
+
+} 
+
+@keyframes signup-response{
+    from {opacity :0;}
+    to {opacity :1;}
+}
+
+@-webkit-keyframes signup-response{
+    from {opacity :0;}
+    to {opacity :1;}
+}
+
+#titulo-header, #titulo-header:focus,#titulo-header:hover {
+	
+	color: #23527c;
+	
+} 
+#logoDandelionIndex{
+	
+	background-color:#f5f5f5!important;
+	color:#f44336;
+    font-size: 100%;
+    border-radius: 2.25em;
+	
+}
+
+
+
+#btnEliminarStakeholder:hover{
+		background-color:#ff352b;	
+}
+
+#btnModificarStakeholder:hover{
+		background-color:#ff352b;	
+}
+.btn-del-listaroltipo:hover{
+	background-color:#ff352b;	
+}
+
+.btn-del-listaroltipoMod:hover{
+	background-color:#ff352b;	
+}
+
+}
