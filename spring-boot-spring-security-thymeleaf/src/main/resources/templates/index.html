@@ -47,9 +47,8 @@ body {
 		<div class="w3-container">
 			<h3 class="w3-padding-64">
 				<b><span class="label label-default" id="logoDandelionIndex">
-						<i class="glyphicon glyphicon-certificate"></i>
-						Dandelion
-						<i class="glyphicon glyphicon-certificate"></i>
+						<i class="glyphicon glyphicon-certificate"></i> Dandelion <i
+						class="glyphicon glyphicon-certificate"></i>
 				</span></b>
 
 			</h3>
@@ -61,9 +60,24 @@ body {
 				class="w3-bar-item w3-button w3-hover-white" id="irProyectos">Proyectos</a>
 			<a href="#stakeholder" onclick="w3_close()"
 				class="w3-bar-item w3-button w3-hover-white" id="irStakeholder">Stakeholders</a>
-			<a href="#designers" onclick="w3_close()"
-				class="w3-bar-item w3-button w3-hover-white">Designers</a> <a
-				href="#packages" onclick="w3_close()"
+
+
+			<a href="#plantillas" onclick="w3_close()" data-toggle="collapse"
+				data-target="#target-plantillas"
+				class="w3-bar-item w3-button w3-hover-white" id="irPlantillas">Plantillas</a>
+			<div id="target-plantillas" class="collapse">
+
+				<a href="#plantillasCalidad" th:if="${proyectoentrabajo != null}"
+					onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"
+					id="irCalidad">&nbsp;&nbsp; - Calidad</a> <a
+					href="#plantillasRestricciones"
+					th:if="${proyectoentrabajo != null}" onclick="w3_close()"
+					class="w3-bar-item w3-button w3-hover-white" id="irRestricciones">&nbsp;&nbsp;
+					- Restricciones</a>
+
+			</div>
+
+			<a href="#packages" onclick="w3_close()"
 				class="w3-bar-item w3-button w3-hover-white">Packages</a> <a
 				href="#contact" onclick="w3_close()"
 				class="w3-bar-item w3-button w3-hover-white">Contact</a>
@@ -118,7 +132,8 @@ body {
 							Proyecto</button>
 
 						<!-- Modal -->
-						<div class="modal fade" id="myModalNuevo" role="dialog">
+						<div class="modal fade" id="myModalNuevo" role="dialog"
+							data-backdrop="static" data-keyboard="false">
 							<div class="modal-dialog">
 
 								<!-- Modal content-->
@@ -221,7 +236,8 @@ body {
 									</button>
 
 									<!-- Modal -->
-									<div class="modal fade" id="myModalEditar" role="dialog">
+									<div class="modal fade" id="myModalEditar" role="dialog"
+										data-backdrop="static" data-keyboard="false">
 										<div class="modal-dialog">
 
 											<!-- Modal content-->
@@ -345,32 +361,32 @@ body {
 											<div class="row">
 												<div id="primermodalStakeholder" class="col-lg-12">
 
-														<div class="form-group">
-															<label>Nombre Identificador Stakeholder</label> <input
-																class="form-control" placeholder="Nombre identificador"
-																required="true" autofocus="true" th:field="*{nombreId}"
-																id="formCrearSHnombreId"></input>
-															<p class="help-block">(Ej: Gerente de ventas)</p>
-														</div>
-														<div class="form-group">
-															<label>Nombre</label> <input class="form-control"
-																placeholder="Nombre del stakeholder" required="true"
-																autofocus="true" th:field="*{nombre}"
-																id="formCrearSHnombre"></input>
-														</div>
-														<div class="form-group">
-															<label>Apellido</label> <input class="form-control"
-																placeholder="Apellido del stakeholder" required="true"
-																th:field="*{apellido}" id="formCrearSHapellido"></input>
-														</div>
-														<div class="form-group">
-															<label>Descripción</label>
-															<textarea class="form-control" rows="2"
-																placeholder="Breve descripción" required="true"
-																th:field="*{descripcion}" id="formCrearSHdescripcion"></textarea>
-															<p class="help-block">Descripción del proyecto
-																(Máximo 500 caracteres)</p>
-														</div>
+													<div class="form-group">
+														<label>Nombre Identificador Stakeholder</label> <input
+															class="form-control" placeholder="Nombre identificador"
+															required="true" autofocus="true" th:field="*{nombreId}"
+															id="formCrearSHnombreId"></input>
+														<p class="help-block">(Ej: Gerente de ventas)</p>
+													</div>
+													<div class="form-group">
+														<label>Nombre</label> <input class="form-control"
+															placeholder="Nombre del stakeholder" required="true"
+															autofocus="true" th:field="*{nombre}"
+															id="formCrearSHnombre"></input>
+													</div>
+													<div class="form-group">
+														<label>Apellido</label> <input class="form-control"
+															placeholder="Apellido del stakeholder" required="true"
+															th:field="*{apellido}" id="formCrearSHapellido"></input>
+													</div>
+													<div class="form-group">
+														<label>Descripción</label>
+														<textarea class="form-control" rows="2"
+															placeholder="Breve descripción" required="true"
+															th:field="*{descripcion}" id="formCrearSHdescripcion"></textarea>
+														<p class="help-block">Descripción del proyecto (Máximo
+															500 caracteres)</p>
+													</div>
 												</div>
 											</div>
 											<!-- Segundo form -->
@@ -429,8 +445,8 @@ body {
 										<div class="modal-footer">
 											<button id="btnPasarModal" type="button"
 												class="btn btn-primary">Roles</button>
-											<input class="btn btn-primary" type="submit" value="Crear" id="btnCrearStakeholder"
-													style="display:none"></input>
+											<input class="btn btn-primary" type="submit" value="Crear"
+												id="btnCrearStakeholder" style="display: none"></input>
 											<button id="btnCerrarModalStakeholder" type="button"
 												class="btn btn-primary" data-dismiss="modal">Cerrar</button>
 											<button id="btnCerrarModalStakeholder2" type="button"
@@ -485,12 +501,13 @@ body {
 									</button>
 								</form>
 								<form id="formEditar">
-								<button type="button" title="Modificar stakeholder" id="btnModificarStakeholder"
+									<button type="button" title="Modificar stakeholder"
+										id="btnModificarStakeholder"
 										class="open-EditarModalStakeholder btn btn-sm btn-info btn-header-function btn-header-function-danger"
 										data-toggle="modal" data-target="#myModalModificarStakeholder"
 										th:attr="data-idnombre=${stakeholder.nombreId}, data-nombre=${stakeholder.nombre}, data-apellido=${stakeholder.apellido}, data-descripcion=${stakeholder.descripcion}, data-id=${stakeholder.id}, data-listatiporol=${stakeholder.listaSHTipoRoles}">
 										<i class="glyphicon glyphicon-pencil"></i>
-								</button>
+									</button>
 								</form>
 
 								<!-- Modal editar stakeholder-->
@@ -533,13 +550,15 @@ body {
 																<label>Descripción</label>
 																<textarea class="form-control" rows="2"
 																	placeholder="Breve descripción" required="true"
-																	th:field="*{descripcion}" id="formModificarSHdescripcion"></textarea>
+																	th:field="*{descripcion}"
+																	id="formModificarSHdescripcion"></textarea>
 																<p class="help-block">Descripción del proyecto
 																	(Máximo 500 caracteres)</p>
 															</div>
 															<input class="form-control"
-																	placeholder="id del stakeholder" required="true"
-																	th:field="*{id}" id="formModificarSHid" style="display:none"></input>
+																placeholder="id del stakeholder" required="true"
+																th:field="*{id}" id="formModificarSHid"
+																style="display: none"></input>
 														</div>
 													</div>
 													<!-- Segundo form -->
@@ -591,16 +610,17 @@ body {
 														<!-- Div oculto que pasa la lista de tipo y rol y lo asigna al atributo de la clase Stakeholder -->
 														<div class="form-group">
 															<input class="form-control"
-																th:field="*{listaSHTipoRoles}" id="formModificarSHlistaTipoRol"
-																style="display: none" />
+																th:field="*{listaSHTipoRoles}"
+																id="formModificarSHlistaTipoRol" style="display: none" />
 														</div>
 													</div>
 												</div>
 												<div class="modal-footer">
 													<button id="btnPasarModalMod" type="button"
 														class="btn btn-primary">Roles</button>
-													<input class="btn btn-primary" type="submit" value="Modificar"
-														id="btnModStakeholder" style="display: none"></input>
+													<input class="btn btn-primary" type="submit"
+														value="Modificar" id="btnModStakeholder"
+														style="display: none"></input>
 													<button id="btnCerrarModalStakeholderMod" type="button"
 														class="btn btn-primary" data-dismiss="modal">Cerrar</button>
 													<button id="btnCerrarModalStakeholder2Mod" type="button"
@@ -623,63 +643,299 @@ body {
 
 
 		<!-- Designers -->
-		<div class="w3-container" id="designers" style="margin-top: 75px">
+		<div class="w3-container" id="plantillas" style="margin-top: 75px">
 			<h1 class="w3-xxxlarge w3-text-red">
-				<b>Designers.</b>
+				<b>Plantillas.</b>
 			</h1>
 			<hr style="width: 50px; border: 5px solid red" class="w3-round"></hr>
-			<p>The best team in the world.</p>
-			<p>We are lorem ipsum consectetur adipiscing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-				veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-				ea commodo consequat. Duis aute irure dolor in reprehenderit in
-				voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-				Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-				officia deserunt mollit anim id est laborum consectetur adipiscing
-				elit, sed do eiusmod tempor incididunt ut labore et quis nostrud
-				exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat.</p>
-			<p>
-				<b>Our designers are thoughtfully chosen</b>:
-			</p>
+			
+			<h1 class="w3-xxxlarge w3-text-red"
+				style="font-size: 27px !important" id="plantillasCalidad">
+				<b>Plantillas de calidad.</b>
+			</h1>
+			
+			<div class="row">
+				<div class="list-group" th:if="${proyectoentrabajo == null}">
+					<div class="alert alert-danger">Seleccione un proyecto a
+						trabajar</div>
+
+				</div>
+				<div class="list-group" th:if="${proyectoentrabajo != null}">
+					<div class="col-lg-12">
+						<ol class="breadcrumb bread-primary breadcrumb-header">
+							<!-- Trigger the modal with a  -->
+							<button type="button" class="btn btn-info btn-lg"
+								data-toggle="modal" data-target="#myModalCalidad">Nuevo
+								Requerimiento Calidad</button>
+
+							<!-- Modal -->
+							
+							<div class="modal fade" id="myModalCalidad" role="dialog"
+								data-backdrop="static" data-keyboard="false">
+								<div class="modal-dialog" style="width: 1050px">
+									<form th:action="@{/crearplantillacalidad/{idProyecto}(idProyecto=${proyectoentrabajo.id})}"
+									th:object="${nuevaPlantillaCalidad}" method="post" >
+									<!-- Modal content-->
+									<div class="modal-content">
+										<div class="modal-header">
+											<h3 class="modal-title">Requerimientos No Funcionales de
+												Calidad</h3>
+										</div>
+										<div class="modal-body">
+
+											<div class="form-group" th:id="segundoModalReqCal">
+												<div class="row">
+													<div
+														th:each="caract : ${tipornfCalidad.caracteristicaCollection}">
+														<label style="display: block; font-size:20px"
+															
+															th:text="${caract.descripcion} + '  '">
+														</label>
+
+														<hr />
+
+														<div th:each="subcaract : ${caract.subcaracteristicaList}"
+															style="display: block">
+														
+															<button type="button" class="btn btn-info btn-lg subcaracteristica-button"
+																th:id="'subcaractButton' + ${subcaract.nombre}"
+																style="display: block; font-size: 15px">
+																<span th:text="${subcaract.nombre} + '  '"></span><i
+																	class="glyphicon glyphicon-import"></i>
+															</button>
+															<hr />
+															<div class="preguntas-por-subcaract" th:id="preguntas + ${subcaract.nombre}" style="display:none" >
+																<div th:each="pregunta,iterPreg : ${subcaract.preguntaList}" >
+																	<div class="panel panel-default panel-pregunta" >
+																		<div class="panel-body" >
+																			<div class="row padall">
+																				<div class="container-pregunta">
+																					<div class="text-pregunta"
+																						th:text="${pregunta.texto}"></div>
+																				</div>
+																			</div>
+																			<div class="list-stake-asociados" style="margin-bottom:30px; display:none" th:id="listastake + ${pregunta.id}">
+																				<li class="list-group-item item-listado"
+																					th:each="stakeholder : ${listaStakeholder}">
+																					<div class="row">
+																						<div
+																							class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center"
+																							th:text="${stakeholder.nombre}"></div>
+																						<div
+																							class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center"
+																							th:text="${stakeholder.apellido}"></div>
+																						<div id="containerOpciones"
+																							class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
+																							<form>
+																								<button type="button"
+																									title="Asociar"
+																									th:attr="data-idStakeholderpreg=${stakeholder.id} , data-pregStakeholderpreg=${pregunta.texto}"
+																									class="btn btn-asociar-pregstake btn-preguntas-minus btn-sm btn-info btn-header-function btn-header-function-danger"
+																									th:id="'preg' + ${pregunta.id} + 'stake' + ${stakeholder.id}">
+																									<i class="glyphicon glyphicon-plus"></i>
+																								</button>
+																							</form>
+																						</div>
+																					</div>
+																				</li>
+																			</div>
+	
+																		</div>
+																		<div class="panel-footer" style="text-align: right;">
+	
+																			<button type="button"
+																				class="btn open-stake-preguntas btn-preguntas btn-sm btn-info btn-header-function btn-header-function-danger"
+																				th:id= "'pregunta' + ${pregunta.id}"
+															
+																				th:attr="data-preguntatexto=${pregunta.texto}">
+																				<i class="glyphicon glyphicon-plus"></i>
+																			</button>
+	
+																		</div>
+																	</div>
+	
+																</div>
+															</div>
+															<hr />
+
+														</div>
+														<hr />
+													</div>
+
+												</div>
+												<!-- Div oculto que pasa la lista de tipo y rol y lo asigna al atributo de la clase Stakeholder -->
+												<div class="form-group">
+													<input class="form-control"
+														th:field="*{encuestasPorStakeholder}" th:id="encuestasPorStakeholderCalidad"
+														 style="display: none"></input>
+												</div>
+											</div>
+
+											<div class="modal-footer">
+												<button type="submit" class="btn btn-primary"
+													th:id="crearModalCalidad" >Crear</button>
+												<button type="button" class="btn btn-primary"
+													th:id="cerrarModalCalidad2" 
+													data-dismiss="modal">Cerrar</button>
+
+											</div>
+										</div>
+
+									</div>
+									</form>
+								</div>
+							</div>
+							
+						</ol>
+					</div>
+				</div>
+
+				
+				<h1 class="w3-xxxlarge w3-text-red"
+						style="font-size: 27px !important" id="plantillasRestricciones">
+						<b>Plantillas de Restricciones.</b>
+				</h1>
+				
+				<div class="list-group" th:if="${proyectoentrabajo == null}">
+					<div class="alert alert-danger">Seleccione un proyecto a
+						trabajar</div>
+
+				</div>
+				<div class="list-group" th:if="${proyectoentrabajo != null}">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+						<ol class="breadcrumb bread-primary breadcrumb-header">
+							<!-- Trigger the modal with a  -->
+							<button type="button" class="btn btn-info btn-lg"
+								data-toggle="modal" data-target="#myModalRestriccion">Nuevo
+								Requerimiento Restricción</button>
+						
+	
+							<!-- Modal -->
+							<div class="modal fade" id="myModalRestriccion" role="dialog"
+								data-backdrop="static" data-keyboard="false">
+								<div class="modal-dialog" style="width: 1050px">
+									<form th:action="@{/crearplantillarestricciones/{idProyecto}(idProyecto=${proyectoentrabajo.id})}"
+									th:object="${nuevaPlantillaRestricciones}" method="post" >
+									<!-- Modal content-->
+									<div class="modal-content">
+										<div class="modal-header">
+											<h3 class="modal-title">Requerimientos No Funcionales de
+												Restricciones</h3>
+										</div>
+										<div class="modal-body">
+		
+											<div class="form-group" th:id="segundoModalReqRes">
+												<div class="row">
+													<div
+														th:each="caract : ${tipornfRestricciones.caracteristicaCollection}">
+														<label style="display: block; font-size:20px"
+															
+															th:text="${caract.descripcion} + '  '">
+														</label>
+		
+														<hr />
+		
+														<div th:each="subcaract : ${caract.subcaracteristicaList}"
+															style="display: block">
+														
+															<button type="button" class="btn btn-info btn-lg subcaracteristica-button"
+																th:id="'subcaractButton' + ${subcaract.nombre}"
+																style="display: block; font-size: 15px">
+																<span th:text="${subcaract.nombre} + '  '"></span><i
+																	class="glyphicon glyphicon-import"></i>
+															</button>
+															<hr />
+															<div class="preguntas-por-subcaract" th:id="preguntas + ${subcaract.nombre}" style="display:none" >
+																<div th:each="pregunta,iterPreg : ${subcaract.preguntaList}" >
+																	<div class="panel panel-default panel-pregunta" >
+																		<div class="panel-body" >
+																			<div class="row padall">
+																				<div class="container-pregunta">
+																					<div class="text-pregunta"
+																						th:text="${pregunta.texto}"></div>
+																				</div>
+																			</div>
+																			<div class="list-stake-asociados" style="margin-bottom:30px; display:none" th:id="listastake + ${pregunta.id}">
+																				<li class="list-group-item item-listado"
+																					th:each="stakeholder : ${listaStakeholder}">
+																					<div class="row">
+																						<div
+																							class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center"
+																							th:text="${stakeholder.nombre}"></div>
+																						<div
+																							class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center"
+																							th:text="${stakeholder.apellido}"></div>
+																						<div id="containerOpciones"
+																							class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
+																							<form>
+																								<button type="button"
+																									title="Asociar"
+																									th:attr="data-idStakeholderpreg=${stakeholder.id} , data-pregStakeholderpreg=${pregunta.texto}"
+																									class="btn btn-asociar-pregstake btn-preguntas-minus btn-sm btn-info btn-header-function btn-header-function-danger"
+																									th:id="'preg' + ${pregunta.id} + 'stake' + ${stakeholder.id}">
+																									<i class="glyphicon glyphicon-plus"></i>
+																								</button>
+																							</form>
+																						</div>
+																					</div>
+																				</li>
+																			</div>
+		
+																		</div>
+																		<div class="panel-footer" style="text-align: right;">
+		
+																			<button type="button"
+																				class="btn open-stake-preguntas btn-preguntas btn-sm btn-info btn-header-function btn-header-function-danger"
+																				th:id= "'pregunta' + ${pregunta.id}"
+															
+																				th:attr="data-preguntatexto=${pregunta.texto}">
+																				<i class="glyphicon glyphicon-plus"></i>
+																			</button>
+		
+																		</div>
+																	</div>
+		
+																</div>
+															</div>
+															<hr />
+		
+														</div>
+														<hr />
+													</div>
+		
+												</div>
+												<!-- Div oculto que pasa la lista de tipo y rol y lo asigna al atributo de la clase Stakeholder -->
+												<div class="form-group">
+													<input class="form-control"
+														th:field="*{encuestasPorStakeholder}" th:id="encuestasPorStakeholderRestricciones"
+														 style="display: none"></input>
+												</div>
+											</div>
+		
+		
+		
+		
+											<div class="modal-footer">
+												<button type="submit" class="btn btn-primary"
+													th:id="crearModalRestricciones" >Crear</button>
+												<button type="button" class="btn btn-primary"
+													th:id="cerrarModalRestricciones2" 
+													data-dismiss="modal">Cerrar</button>
+		
+											</div>
+										</div>
+		
+									</div>
+								</form>
+								</div>
+							</div>
+						</ol>
+					</div>
+				</div>
+			</div>
 		</div>
 
-		<!-- The Team -->
-		<div class="w3-row-padding w3-grayscale">
-			<div class="w3-col m4 w3-margin-bottom">
-				<div class="w3-light-grey">
-					<img src="/w3images/team2.jpg" alt="John" style="width: 100%"></img>
-					<div class="w3-container">
-						<h3>John Doe</h3>
-						<p class="w3-opacity">CEO and Founder</p>
-						<p>Phasellus eget enim eu lectus faucibus vestibulum.
-							Suspendisse sodales pellentesque elementum.</p>
-					</div>
-				</div>
-			</div>
-			<div class="w3-col m4 w3-margin-bottom">
-				<div class="w3-light-grey">
-					<img src="/w3images/team1.jpg" alt="Jane" style="width: 100%"></img>
-					<div class="w3-container">
-						<h3>Jane Doe</h3>
-						<p class="w3-opacity">Designer</p>
-						<p>Phasellus eget enim eu lectus faucibus vestibulum.
-							Suspendisse sodales pellentesque elementum.</p>
-					</div>
-				</div>
-			</div>
-			<div class="w3-col m4 w3-margin-bottom">
-				<div class="w3-light-grey">
-					<img src="/w3images/team3.jpg" alt="Mike" style="width: 100%"></img>
-					<div class="w3-container">
-						<h3>Mike Ross</h3>
-						<p class="w3-opacity">Architect</p>
-						<p>Phasellus eget enim eu lectus faucibus vestibulum.
-							Suspendisse sodales pellentesque elementum.</p>
-					</div>
-				</div>
-			</div>
-		</div>
+
 
 		<!-- Packages / Pricing Tables -->
 		<div class="w3-container" id="packages" style="margin-top: 75px">
@@ -795,14 +1051,13 @@ body {
 		}
 
 		var listaTipoRol = [];
-		
-// 		Completa los datos del modificar proyecto
+
+		// 		Completa los datos del modificar proyecto
 		$(document).on("click", ".open-EditarModal", function() {
 			var nombre = $(this).data('nombre');
 			var descripcion = $(this).data('descripcion');
 			var organizacion = $(this).data('organizacion');
 			var id = $(this).data('id');
-			
 
 			$(".modal-body #nombreProyecto").val(nombre);
 			$(".modal-body #descripcionProyecto").val(descripcion);
@@ -810,39 +1065,48 @@ body {
 			$(".modal-body #idProyecto").val(id);
 
 		});
-		
-		
-		
-// 		Completa los daots del modificar stakeholder
+
+		// 		Completa los daots del modificar stakeholder
 		var listaTipoRolPasaje = [];
-		$(document).on("click", ".open-EditarModalStakeholder", function() {
-			var nombreId = $(this).data('idnombre');
-			var nombre = $(this).data('nombre');
-			var apellido = $(this).data('apellido');
-			var descripcion = $(this).data('descripcion');
-			var id = $(this).data('id');
+		$(document)
+				.on(
+						"click",
+						".open-EditarModalStakeholder",
+						function() {
+							var nombreId = $(this).data('idnombre');
+							var nombre = $(this).data('nombre');
+							var apellido = $(this).data('apellido');
+							var descripcion = $(this).data('descripcion');
+							var id = $(this).data('id');
 
-			console.log(($(this).data('listatiporol')));
-			if (($(this).data('listatiporol').length != 0)){
-//	 			Separa por comas
-				listaTipoRolPasaje = $(this).data('listatiporol').split(", ");
-				
-//	 			Saca los corchetes del principio y el final
-				listaTipoRolPasaje[0] = listaTipoRolPasaje[0].substring(1);
-				listaTipoRolPasaje[(listaTipoRolPasaje.length-1)] = listaTipoRolPasaje[(listaTipoRolPasaje.length-1)].substring(0,(listaTipoRolPasaje[(listaTipoRolPasaje.length-1)].length-1));
-								
-			}
 
-			
-			$(".modal-body #formModificarSHnombreId").val(nombreId);
-			$(".modal-body #formModificarSHnombre").val(nombre);
-			$(".modal-body #formModificarSHapellido").val(apellido);
-			$(".modal-body #formModificarSHdescripcion").val(descripcion);
-			$(".modal-body #formModificarSHid").val(id);
-			$(".modal-body #formModificarSHlistaTipoRol").val(listaTipoRolPasaje);
-			
-			
-		});
+							if (($(this).data('listatiporol').length != 0)) {
+								//	 			Separa por comas
+								listaTipoRolPasaje = $(this).data(
+										'listatiporol').split(", ");
+
+								//	 			Saca los corchetes del principio y el final
+								listaTipoRolPasaje[0] = listaTipoRolPasaje[0]
+										.substring(1);
+								listaTipoRolPasaje[(listaTipoRolPasaje.length - 1)] = listaTipoRolPasaje[(listaTipoRolPasaje.length - 1)]
+										.substring(
+												0,
+												(listaTipoRolPasaje[(listaTipoRolPasaje.length - 1)].length - 1));
+
+							}
+
+							$(".modal-body #formModificarSHnombreId").val(
+									nombreId);
+							$(".modal-body #formModificarSHnombre").val(nombre);
+							$(".modal-body #formModificarSHapellido").val(
+									apellido);
+							$(".modal-body #formModificarSHdescripcion").val(
+									descripcion);
+							$(".modal-body #formModificarSHid").val(id);
+							$(".modal-body #formModificarSHlistaTipoRol").val(
+									listaTipoRolPasaje);
+
+						});
 
 		$().ready(function() {
 
@@ -890,7 +1154,7 @@ body {
 			});
 
 			$('#btnPasarModal').click(function() {
-				
+
 				if ($("#formCrearSH").valid()) { // test for validity
 					$('#primermodalStakeholder').toggle(function() {
 						$('#panel').animate({
@@ -936,15 +1200,12 @@ body {
 					$('#btnCerrarModalStakeholder').hide();
 					$('#btnCerrarModalStakeholder2').show();
 					$('#btnCrearStakeholder').show();
-				} else {
-					console.log("asdasd");
 				}
-
 			});
 		});
 
 		/* Crea una lista en donde va poniendo tipo y roles de stakeholder que despues se van a agregar */
-		
+
 		$("#btnAgregarRolTipo")
 				.click(
 						function() {
@@ -997,34 +1258,37 @@ body {
 
 									}
 									/* Mete en la lista id tipo e id rol */
-									$("[name^='tipoStakeholder']").each(
-											function() {
-												
-												if ((this.value) == idtipoStakeholder ){
-													listaTipoRol.push(this.value);
-													texttipo = $(this).find(
-													'option:selected')
-													.text();
-												}
-												
-			
+									$("[name^='tipoStakeholder']")
+											.each(
+													function() {
 
-											});
-									$("[name^='rolStakeholder']").each(
-											
-											function() {
-												
-												if ((this.value) == idrolStakeholder ){
-													listaTipoRol.push(this.value);
-													
-													textrol = $(this).find(
-															'option:selected')
-															.text();
-													
-												}
-												
-											});
-									
+														if ((this.value) == idtipoStakeholder) {
+															listaTipoRol
+																	.push(this.value);
+															texttipo = $(this)
+																	.find(
+																			'option:selected')
+																	.text();
+														}
+
+													});
+									$("[name^='rolStakeholder']")
+											.each(
+
+													function() {
+
+														if ((this.value) == idrolStakeholder) {
+															listaTipoRol
+																	.push(this.value);
+
+															textrol = $(this)
+																	.find(
+																			'option:selected')
+																	.text();
+
+														}
+
+													});
 
 									var indice = (listaTipoRol.length / 2) - 1;
 									//<![CDATA[
@@ -1067,16 +1331,13 @@ body {
 
 								}
 
-								console.log(listaTipoRol);
-								console.log(listaTipoRol.length);
+		
 							} else {
 								alert("Ingresar Tipo Stakeholder");
 							}
 
 						});
-		
-		
-		
+
 		$('#btnCerrarModalStakeholder2').click(function() {
 
 			$('#primermodalStakeholder').toggle(function() {
@@ -1122,7 +1383,7 @@ body {
 			$('#btnPasarModal').show();
 			$('#btnCerrarModalStakeholder').show();
 			$('#btnCerrarModalStakeholder2').hide();
-			
+
 			/* Reinicia la lista tiporol cuando pones cerrar*/
 			listaTipoRol = [];
 			$('#tablaTipoRol').empty();
@@ -1194,9 +1455,7 @@ body {
 			var borrarLi = "#listIndicetiporol" + nroId;
 			/* Oculta el LI que tiene el mismo numero de id que el boton que se apreto */
 			$(borrarLi).hide("slow");
-	
-			console.log(nroId);
-			console.log(listaTipoRol);
+
 			/* Se multiplica el nroId por dos ya que en la lista se guarda tipo y rol en diferentes posiciones */
 			nroId = nroId * 2;
 			var idTipo = nroId;
@@ -1205,7 +1464,6 @@ body {
 			listaTipoRol[idTipo] = listaTipoRol[idTipo] + "N";
 			listaTipoRol[idRol] = listaTipoRol[idRol] + "N";
 			$("#listaSHTipoRoles").val(listaTipoRol);
-			console.log(listaTipoRol);
 
 		});
 
@@ -1232,390 +1490,1014 @@ body {
 				scrollTop : $($.attr(this, 'href')).offset().top
 			}, 500);
 		});
-		
-		
-		$('#btnPasarModalMod').click(function() {
-			console.log("asd");
-			if ($("#formCrearSH").valid()) { // test for validity
-				$('#primermodalStakeholderMod').toggle(function() {
-					$('#panel').animate({
-						height : "150",
-						padding : "20px 0",
-						backgroundColor : '#000000',
-						opacity : .8
-					}, 500);
-					$('#otherdiv').animate({
-					//otherdiv properties here
-					}, 500);
-				}, function() {
-					$('#panel').animate({
-						height : "0",
-						padding : "0px 0",
-						opacity : .2
-					}, 500);
-					$('#otherdiv').animate({
-					//otherdiv properties here
-					}, 500);
-				});
-				$('#segundomodalStakeholderMod').toggle(function() {
-					$('#panel').animate({
-						height : "150",
-						padding : "20px 0",
-						backgroundColor : '#000000',
-						opacity : .8
-					}, 500);
-					$('#otherdiv').animate({
-					//otherdiv properties here
-					}, 500);
-				}, function() {
-					$('#panel').animate({
-						height : "0",
-						padding : "0px 0",
-						opacity : .2
-					}, 500);
-					$('#otherdiv').animate({
-					//otherdiv properties here
-					}, 500);
-				});
-				
-// 				Si listaTipoRolPasaje no esta vacia agrego el encabezado de la tabla
-				if (!listaTipoRolPasaje.length == 0) {
 
-					//<![CDATA[
-					$(
-							"<li class=\"list-group-item item-listado item-tiporol\""+ 
-									"style=\"background-color: #f44336; color: white\">"
-									+ "<div class=\"row\">"
-									+ "<div class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center\">Tipo Stakeholder</div>"
-									+ "<div class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center\">Rol Stakeholder</div>"
-									+ "</div>" + "</li>")
-							.hide().appendTo(
-									"#tablaTipoRolMod")
-							.fadeIn(1500);
-					//]]>
-					
-					//<![CDATA[
-					for(i = 0; i < listaTipoRolPasaje.length; i+=4){
-						
-						
-						$(
-								"<li class=\"list-group-item item-listado item-tiporol\" id=\"listIndicetiporolMod"+((i/4))+"\">"
-										+ "<div class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center\">"
-										+ "<span class=\"badge badge-information\">"
-										+ listaTipoRolPasaje[i+2]
-										+ "</span>"
-										+ "</div>	<div class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center\">"
-										+ listaTipoRolPasaje[i+3]
-										+ "</div> </div>"
-										+ "<div id=\"containerOpciones\" class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center\">"
-										+ "<form id=\"formEliminar\">"
-										+ "<button type=\"button\" title=\"Eliminar stakeholder\""+
-											"class=\"btn btn-sm btn-info btn-header-function btn-header-function-danger btn-del-listaroltipoMod\""+
-											"id=\"btnIndicetiporolMod"+((i/4))+"\">"
-										+ "<i class=\"glyphicon glyphicon-trash\"></i>"
-										+ "</button>"
-										+ "</form>"
-										+ "</div></li>").hide()
-								.appendTo("#tablaTipoRolMod").fadeIn(
-										1500);
-						
-						listaTipoRol.push(listaTipoRolPasaje[i]);
-						listaTipoRol.push(listaTipoRolPasaje[i+1]);
-						
-// 						Sirve para setear la lista que se va a mandar al controlador tal cual esta y no que pase al controlador la 
-// 						listaTipoRolPasaje
-						$(".modal-body #formModificarSHlistaTipoRol").val(listaTipoRol);
-						
-						
-					}
-					//]]>
-
-				}
-// 				Si listaTipoRolPasaje esta vacia hago que listaTipoRol tambien este vacia
-				else{
-					listaTipoRol = [];
-				}
-				
-				
-				$('#btnPasarModalMod').hide();
-				$('#btnCerrarModalStakeholderMod').hide();
-				$('#btnCerrarModalStakeholder2Mod').show();
-				$('#btnModStakeholder').show();
-			} else {
-				console.log("asdasd");
-			}
-
+		/* Ir despacio a Plantillas */
+		$("#irPlantillas").click(function(e) {
+			e.preventDefault();
+			$('html, body').animate({
+				scrollTop : $($.attr(this, 'href')).offset().top
+			}, 500);
 		});
 
-	/* Crea una lista en donde va poniendo tipo y roles de stakeholder que despues se van a agregar */
-	$("#btnAgregarRolTipoMod")
-			.click(
-					function() {
-						var existe = false;
-						var estaOculta = false;
-						var posicionOculta;
-						var texttipo;
-						var textrol;
-						var idtipoStakeholder = $('#tipoStakeholderMod').val();
-						var idrolStakeholder = $('#rolStakeholderMod').val();
-						$("#tipoStakeholderMod option:eq(1)").text();
-						console.log("Tipo seleccionado: " + idtipoStakeholder);
-						console.log("Rol  seleccionado: " + idrolStakeholder);
-						
-						/* Valida que haya seleccionado algun tipo de stakeholder */
-						if (idtipoStakeholder != 0) {
+		/* Ir despacio a Plantilla Calidad */
+		$("#irCalidad").click(function(e) {
+			e.preventDefault();
+			$('html, body').animate({
+				scrollTop : $($.attr(this, 'href')).offset().top
+			}, 500);
+		});
 
-							/* Valida que no este en la lista */
-							if (!listaTipoRol.length == 0) {
-								//<![CDATA[
-								for (i = 0; i < listaTipoRol.length; i = i + 2) {
-									/* Verifica si el primer caracter es igual a idtipoStakehodler y idRolStakeholder */
-									if (listaTipoRol[i].charAt(0) == idtipoStakeholder
-											&& listaTipoRol[i + 1]
-													.charAt(0) == idrolStakeholder) {
-										existe = true;
-										if (listaTipoRol[i].charAt(1) == 'N') {
-											estaOculta = true;
-											posicionOculta = i;
-										}
-									}
-								}
-								//]]>
-							}
+		/* Ir despacio a Plantilla Restricciones */
+		$("#irRestricciones").click(function(e) {
+			e.preventDefault();
+			$('html, body').animate({
+				scrollTop : $($.attr(this, 'href')).offset().top
+			}, 500);
+		});
 
-							if (!existe) {
-		
-								if (listaTipoRol.length == 0) {
+		$('#btnPasarModalMod')
+				.click(
+						function() {
+							if ($("#formCrearSH").valid()) { // test for validity
+								$('#primermodalStakeholderMod').toggle(
+										function() {
+											$('#panel').animate({
+												height : "150",
+												padding : "20px 0",
+												backgroundColor : '#000000',
+												opacity : .8
+											}, 500);
+											$('#otherdiv').animate({
+											//otherdiv properties here
+											}, 500);
+										}, function() {
+											$('#panel').animate({
+												height : "0",
+												padding : "0px 0",
+												opacity : .2
+											}, 500);
+											$('#otherdiv').animate({
+											//otherdiv properties here
+											}, 500);
+										});
+								$('#segundomodalStakeholderMod').toggle(
+										function() {
+											$('#panel').animate({
+												height : "150",
+												padding : "20px 0",
+												backgroundColor : '#000000',
+												opacity : .8
+											}, 500);
+											$('#otherdiv').animate({
+											//otherdiv properties here
+											}, 500);
+										}, function() {
+											$('#panel').animate({
+												height : "0",
+												padding : "0px 0",
+												opacity : .2
+											}, 500);
+											$('#otherdiv').animate({
+											//otherdiv properties here
+											}, 500);
+										});
+
+								// 				Si listaTipoRolPasaje no esta vacia agrego el encabezado de la tabla
+								if (!listaTipoRolPasaje.length == 0) {
 
 									//<![CDATA[
 									$(
 											"<li class=\"list-group-item item-listado item-tiporol\""+ 
-							"style=\"background-color: #f44336; color: white\">"
+									"style=\"background-color: #f44336; color: white\">"
 													+ "<div class=\"row\">"
 													+ "<div class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center\">Tipo Stakeholder</div>"
 													+ "<div class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center\">Rol Stakeholder</div>"
 													+ "</div>" + "</li>")
-											.hide().appendTo(
-													"#tablaTipoRolMod")
-											.fadeIn(500);
+											.hide()
+											.appendTo("#tablaTipoRolMod")
+											.fadeIn(1500);
+									//]]>
+
+									//<![CDATA[
+									for (i = 0; i < listaTipoRolPasaje.length; i += 4) {
+
+										$(
+												"<li class=\"list-group-item item-listado item-tiporol\" id=\"listIndicetiporolMod"
+														+ ((i / 4))
+														+ "\">"
+														+ "<div class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center\">"
+														+ "<span class=\"badge badge-information\">"
+														+ listaTipoRolPasaje[i + 2]
+														+ "</span>"
+														+ "</div>	<div class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center\">"
+														+ listaTipoRolPasaje[i + 3]
+														+ "</div> </div>"
+														+ "<div id=\"containerOpciones\" class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center\">"
+														+ "<form id=\"formEliminar\">"
+														+ "<button type=\"button\" title=\"Eliminar stakeholder\""
+														+ "class=\"btn btn-sm btn-info btn-header-function btn-header-function-danger btn-del-listaroltipoMod\""
+														+ "id=\"btnIndicetiporolMod"
+														+ ((i / 4))
+														+ "\">"
+														+ "<i class=\"glyphicon glyphicon-trash\"></i>"
+														+ "</button>"
+														+ "</form>"
+														+ "</div></li>").hide()
+												.appendTo("#tablaTipoRolMod")
+												.fadeIn(1500);
+
+										listaTipoRol
+												.push(listaTipoRolPasaje[i]);
+										listaTipoRol
+												.push(listaTipoRolPasaje[i + 1]);
+
+										// 						Sirve para setear la lista que se va a mandar al controlador tal cual esta y no que pase al controlador la 
+										// 						listaTipoRolPasaje
+										$(
+												".modal-body #formModificarSHlistaTipoRol")
+												.val(listaTipoRol);
+
+									}
 									//]]>
 
 								}
-								/* Mete en la lista id tipo e id rol */
-								console.log("ANTES DEL EACH");
-								$("[name^='tipoStakeholderMod']").each(
-										
-										
-										function() {
-											console.log(this.value);
-											console.log(idtipoStakeholder);
-											if ((this.value) == idtipoStakeholder ){
-													listaTipoRol.push(this.value);
-													texttipo = $(this).find(
-															'option:selected')
-															.text();
-											}
-
-										});
-								$("[name^='rolStakeholderMod']").each(
-										
-										function() {
-											
-											if ((this.value) == idrolStakeholder ){
-												listaTipoRol.push(this.value);
-												textrol = $(this).find(
-														'option:selected')
-														.text();
-											}
-										});
-
-								var indice = (listaTipoRol.length / 2) - 1;
-								//<![CDATA[
-								$(
-										"<li class=\"list-group-item item-listado item-tiporol\" id=\"listIndicetiporolMod"+indice+"\">"
-												+ "<div class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center\">"
-												+ "<span class=\"badge badge-information\">"
-												+ texttipo
-												+ "</span>"
-												+ "</div>	<div class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center\">"
-												+ textrol
-												+ "</div> </div>"
-												+ "<div id=\"containerOpciones\" class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center\">"
-												+ "<form id=\"formEliminar\">"
-												+ "<button type=\"button\" title=\"Eliminar stakeholder\""+
-								"class=\"btn btn-sm btn-info btn-header-function btn-header-function-danger btn-del-listaroltipoMod\""+
-								"id=\"btnIndicetiporolMod"+indice+"\">"
-												+ "<i class=\"glyphicon glyphicon-trash\"></i>"
-												+ "</button>"
-												+ "</form>"
-												+ "</div></li>").hide()
-										.appendTo("#tablaTipoRolMod").fadeIn(
-												500);
-								//]]>
-								$("#formModificarSHlistaTipoRol").val(listaTipoRol);
-							} else {
-								if (!estaOculta) {
-									alert("Ya esta ingresado en la lista");
-								} else {
-
-									listaTipoRol[posicionOculta] = idtipoStakeholder;
-									listaTipoRol[posicionOculta + 1] = idrolStakeholder;
-									var indiceenList = posicionOculta / 2;
-
-									var borrarLi = "#listIndicetiporolMod"
-											+ indiceenList;
-									/* Oculta el LI que tiene el mismo numero de id que el boton que se apreto */
-									$(borrarLi).show("slow");
+								// 				Si listaTipoRolPasaje esta vacia hago que listaTipoRol tambien este vacia
+								else {
+									listaTipoRol = [];
 								}
 
+								$('#btnPasarModalMod').hide();
+								$('#btnCerrarModalStakeholderMod').hide();
+								$('#btnCerrarModalStakeholder2Mod').show();
+								$('#btnModStakeholder').show();
+							} 
+							
+
+						});
+
+		/* Crea una lista en donde va poniendo tipo y roles de stakeholder que despues se van a agregar */
+		$("#btnAgregarRolTipoMod")
+				.click(
+						function() {
+							var existe = false;
+							var estaOculta = false;
+							var posicionOculta;
+							var texttipo;
+							var textrol;
+							var idtipoStakeholder = $('#tipoStakeholderMod')
+									.val();
+							var idrolStakeholder = $('#rolStakeholderMod')
+									.val();
+							$("#tipoStakeholderMod option:eq(1)").text();
+						
+
+							/* Valida que haya seleccionado algun tipo de stakeholder */
+							if (idtipoStakeholder != 0) {
+
+								/* Valida que no este en la lista */
+								if (!listaTipoRol.length == 0) {
+									//<![CDATA[
+									for (i = 0; i < listaTipoRol.length; i = i + 2) {
+										/* Verifica si el primer caracter es igual a idtipoStakehodler y idRolStakeholder */
+										if (listaTipoRol[i].charAt(0) == idtipoStakeholder
+												&& listaTipoRol[i + 1]
+														.charAt(0) == idrolStakeholder) {
+											existe = true;
+											if (listaTipoRol[i].charAt(1) == 'N') {
+												estaOculta = true;
+												posicionOculta = i;
+											}
+										}
+									}
+									//]]>
+								}
+
+								if (!existe) {
+
+									if (listaTipoRol.length == 0) {
+
+										//<![CDATA[
+										$(
+												"<li class=\"list-group-item item-listado item-tiporol\""+ 
+							"style=\"background-color: #f44336; color: white\">"
+														+ "<div class=\"row\">"
+														+ "<div class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center\">Tipo Stakeholder</div>"
+														+ "<div class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center\">Rol Stakeholder</div>"
+														+ "</div>" + "</li>")
+												.hide().appendTo(
+														"#tablaTipoRolMod")
+												.fadeIn(500);
+										//]]>
+
+									}
+									/* Mete en la lista id tipo e id rol */
+	
+									$("[name^='tipoStakeholderMod']")
+											.each(
+
+													function() {
+								
+													
+														if ((this.value) == idtipoStakeholder) {
+															listaTipoRol
+																	.push(this.value);
+															texttipo = $(this)
+																	.find(
+																			'option:selected')
+																	.text();
+														}
+
+													});
+									$("[name^='rolStakeholderMod']")
+											.each(
+
+													function() {
+
+														if ((this.value) == idrolStakeholder) {
+															listaTipoRol
+																	.push(this.value);
+															textrol = $(this)
+																	.find(
+																			'option:selected')
+																	.text();
+														}
+													});
+
+									var indice = (listaTipoRol.length / 2) - 1;
+									//<![CDATA[
+									$(
+											"<li class=\"list-group-item item-listado item-tiporol\" id=\"listIndicetiporolMod"+indice+"\">"
+													+ "<div class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center\">"
+													+ "<span class=\"badge badge-information\">"
+													+ texttipo
+													+ "</span>"
+													+ "</div>	<div class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center\">"
+													+ textrol
+													+ "</div> </div>"
+													+ "<div id=\"containerOpciones\" class=\"col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center\">"
+													+ "<form id=\"formEliminar\">"
+													+ "<button type=\"button\" title=\"Eliminar stakeholder\""+
+								"class=\"btn btn-sm btn-info btn-header-function btn-header-function-danger btn-del-listaroltipoMod\""+
+								"id=\"btnIndicetiporolMod"+indice+"\">"
+													+ "<i class=\"glyphicon glyphicon-trash\"></i>"
+													+ "</button>"
+													+ "</form>"
+													+ "</div></li>").hide()
+											.appendTo("#tablaTipoRolMod")
+											.fadeIn(500);
+									//]]>
+									$("#formModificarSHlistaTipoRol").val(
+											listaTipoRol);
+								} else {
+									if (!estaOculta) {
+										alert("Ya esta ingresado en la lista");
+									} else {
+
+										listaTipoRol[posicionOculta] = idtipoStakeholder;
+										listaTipoRol[posicionOculta + 1] = idrolStakeholder;
+										var indiceenList = posicionOculta / 2;
+
+										var borrarLi = "#listIndicetiporolMod"
+												+ indiceenList;
+										/* Oculta el LI que tiene el mismo numero de id que el boton que se apreto */
+										$(borrarLi).show("slow");
+									}
+
+								}
+
+				
+							} else {
+								alert("Ingresar Tipo Stakeholder");
 							}
 
-							console.log(listaTipoRol);
-							console.log(listaTipoRol.length);
-						} else {
-							alert("Ingresar Tipo Stakeholder");
-						}
+						});
 
-					});
-	
-	
-	
-	$('#btnCerrarModalStakeholder2Mod').click(function() {
+		$('#btnCerrarModalStakeholder2Mod').click(function() {
 
-		$('#primermodalStakeholderMod').toggle(function() {
-			$('#panel').animate({
-				height : "150",
-				padding : "20px 0",
-				backgroundColor : '#000000',
-				opacity : .8
-			}, 500);
-			$('#otherdiv').animate({
-			//otherdiv properties here
-			}, 500);
-		}, function() {
-			$('#panel').animate({
-				height : "0",
-				padding : "0px 0",
-				opacity : .2
-			}, 500);
-			$('#otherdiv').animate({
-			//otherdiv properties here
-			}, 500);
+			$('#primermodalStakeholderMod').toggle(function() {
+				$('#panel').animate({
+					height : "150",
+					padding : "20px 0",
+					backgroundColor : '#000000',
+					opacity : .8
+				}, 500);
+				$('#otherdiv').animate({
+				//otherdiv properties here
+				}, 500);
+			}, function() {
+				$('#panel').animate({
+					height : "0",
+					padding : "0px 0",
+					opacity : .2
+				}, 500);
+				$('#otherdiv').animate({
+				//otherdiv properties here
+				}, 500);
+			});
+			$('#segundomodalStakeholderMod').toggle(function() {
+				$('#panel').animate({
+					height : "150",
+					padding : "20px 0",
+					backgroundColor : '#000000',
+					opacity : .8
+				}, 500);
+				$('#otherdiv').animate({
+				//otherdiv properties here
+				}, 500);
+			}, function() {
+				$('#panel').animate({
+					height : "0",
+					padding : "0px 0",
+					opacity : .2
+				}, 500);
+				$('#otherdiv').animate({
+				//otherdiv properties here
+				}, 500);
+			});
+			$('#btnPasarModalMod').show();
+			$('#btnCerrarModalStakeholderMod').show();
+			$('#btnCerrarModalStakeholder2Mod').hide();
+			$('#btnModStakeholder').hide();
+
+			/* Reinicia la lista tiporol cuando pones cerrar*/
+			listaTipoRol = [];
+			// 		VERRRR
+			$('#tablaTipoRolMod').empty();
+
 		});
-		$('#segundomodalStakeholderMod').toggle(function() {
-			$('#panel').animate({
-				height : "150",
-				padding : "20px 0",
-				backgroundColor : '#000000',
-				opacity : .8
-			}, 500);
-			$('#otherdiv').animate({
-			//otherdiv properties here
-			}, 500);
-		}, function() {
-			$('#panel').animate({
-				height : "0",
-				padding : "0px 0",
-				opacity : .2
-			}, 500);
-			$('#otherdiv').animate({
-			//otherdiv properties here
-			}, 500);
-		});
-		$('#btnPasarModalMod').show();
-		$('#btnCerrarModalStakeholderMod').show();
-		$('#btnCerrarModalStakeholder2Mod').hide();
-		$('#btnModStakeholder').hide();
-		
-		/* Reinicia la lista tiporol cuando pones cerrar*/
-		listaTipoRol = [];
-// 		VERRRR
-		$('#tablaTipoRolMod').empty();
 
-	});
-	
-	
-	/* Manejo en el modal cuando se selecciona el tipo y rol de un stakeholder */
-	$('#tipoStakeholderMod')
-			.change(
-					function() {
+		/* Manejo en el modal cuando se selecciona el tipo y rol de un stakeholder */
+		$('#tipoStakeholderMod')
+				.change(
+						function() {
 
-						//
+							//
 
-						/* Muestra todos menos el seleccionar de Tipo Stakeholder */
-						$('#tipoStakeholderMod option').show() // hide all
-						.filter('[value="' + 0 + '"]') // filter options with required value
-						.hide(); // and show them
+							/* Muestra todos menos el seleccionar de Tipo Stakeholder */
+							$('#tipoStakeholderMod option').show() // hide all
+							.filter('[value="' + 0 + '"]') // filter options with required value
+							.hide(); // and show them
 
-						/* Cada vez que se cambia un tipo de stakeholder aparezca el Seleccionar y simule una actualizacion del combo */
-						$("#rolStakeholderMod option[value='0']").prop(
-								'selected', true);
+							/* Cada vez que se cambia un tipo de stakeholder aparezca el Seleccionar y simule una actualizacion del combo */
+							$("#rolStakeholderMod option[value='0']").prop(
+									'selected', true);
 
-						/* Remueve el atributo disable de Rol Stakeholder */
-						$("#rolStakeholderMod").removeAttr("disabled");
+							/* Remueve el atributo disable de Rol Stakeholder */
+							$("#rolStakeholderMod").removeAttr("disabled");
 
-						/* Hace un AJAX get para obtener los roles segun el tipo que se selecciono */
-						ajaxGet($('#tipoStakeholderMod').val());
+							/* Hace un AJAX get para obtener los roles segun el tipo que se selecciono */
+							ajaxGet($('#tipoStakeholderMod').val());
 
-						function ajaxGet(tipoId) {
-							$
-									.ajax({
-										type : "GET",
-										url : "http://localhost:8090/rolesportipo/"
-												+ tipoId,
-										data : /*[[${listaRolStakeholder}]]*/{},
-										success : function(data, status) {
-											var options = '';
-											//<![CDATA[
-											for (i = 0; i < data.length; i++) {
+							function ajaxGet(tipoId) {
+								$
+										.ajax({
+											type : "GET",
+											url : "http://localhost:8090/rolesportipo/"
+													+ tipoId,
+											data : /*[[${listaRolStakeholder}]]*/{},
+											success : function(data, status) {
+												var options = '';
+												//<![CDATA[
+												for (i = 0; i < data.length; i++) {
 
-												options += '<option value="' + data[i]['id'] + '">'
-														+ data[i]['nombre']
-														+ '</option>';
-												$('#rolStakeholderMod').html(
-														options);
+													options += '<option value="' + data[i]['id'] + '">'
+															+ data[i]['nombre']
+															+ '</option>';
+													$('#rolStakeholderMod')
+															.html(options);
 
+												}
+												//]]>
+
+											},
+											error : function(xhr, status,
+													errorThrown) {
+
+												console.log(xhr);
+												console.log(status);
+												console.log(errorThrown);
 											}
-											//]]>
+										})
+							}
+							;
+						});
 
-										},
-										error : function(xhr, status,
-												errorThrown) {
+		/* Cuando clickea el tacho de basura de la lista roltipo en modificacions  */
+		$(document).on('click', '.btn-del-listaroltipoMod', function(e) {
 
-											console.log(xhr);
-											console.log(status);
-											console.log(errorThrown);
-										}
-									})
-						}
-						;
-					});
+			/* saca el id sacandole el texto del principio y quedandose solo con el numero */
+			var nroId = $(this).attr('id').replace(/btnIndicetiporolMod/, '');
+
+			var borrarLi = "#listIndicetiporolMod" + nroId;
+			/* Oculta el LI que tiene el mismo numero de id que el boton que se apreto */
+			$(borrarLi).hide("slow");
+
+
+			/* Se multiplica el nroId por dos ya que en la lista se guarda tipo y rol en diferentes posiciones */
+			nroId = nroId * 2;
+			var idTipo = nroId;
+			var idRol = nroId + 1;
+			/* Se le pone una N despues del id cuando el LI esta oculto */
+			listaTipoRol[idTipo] = listaTipoRol[idTipo] + "N";
+			listaTipoRol[idRol] = listaTipoRol[idRol] + "N";
+			$("#formModificarSHlistaTipoRol").val(listaTipoRol);
 	
+
+		});
+
+		//Oculta y muestra las opciones de caracteristicas de calidad --> subcaract madurez
+		$('#subcaractButtonMadurez').click(
+				function() {
+
+					//Muestra/oculta las preguntas de madurez
+					$('#preguntasMadurez').toggle("slow");
+
+					//saca el margin que tiene actualmente
+					var left = $("#subcaractButtonMadurez").offset().left;
+
+					//evalua el margin y dependiendo la posicion corre el boton confiabilidad 
+					if (left == 143.5) {
+						$('#subcaractButtonMadurez').animate({
+							'margin-left' : '336'
+						}, 'slow');
+					} else {
+						$('#subcaractButtonMadurez').animate({
+							'margin-left' : '0'
+						}, 'slow');
+					}
+
+					//cambia el icono cuando se clickea el boton
+					$(this).find('i').toggleClass('glyphicon-import')
+							.toggleClass('glyphicon-save');
+
+				});
+
+		$("[id='subcaractButtonTolerancia a Fallas']").click(
+				function() {
+
+					//Muestra/oculta las preguntas de Tolerancia a fallas
+					$("[id='preguntasTolerancia a Fallas']").toggle("slow");
+
+					//saca el margin que tiene actualmente
+					var left = $("[id='subcaractButtonTolerancia a Fallas']").offset().left;
+
+					//evalua el margin y dependiendo la posicion corre el boton Tolerancia a fallas 
+					if (left == 143.5) {
+						$("[id='subcaractButtonTolerancia a Fallas']").animate({
+							'margin-left' : '336'
+						}, 'slow');
+					} else {
+						$("[id='subcaractButtonTolerancia a Fallas']").animate({
+							'margin-left' : '0'
+						}, 'slow');
+					}
+
+					//cambia el icono cuando se clickea el boton
+					$(this).find('i').toggleClass('glyphicon-import')
+							.toggleClass('glyphicon-save');
+
+				});
+
+
+		//Oculta y muestra las opciones de caracteristicas de calidad --> subcaract Recuperabilidad
+		$('#subcaractButtonRecuperabilidad').click(
+				function() {
+
+					//Muestra/oculta las preguntas de Recuperabilidad
+					$('#preguntasRecuperabilidad').toggle("slow");
+
+					//saca el margin que tiene actualmente
+					var left = $("#subcaractButtonRecuperabilidad").offset().left;
+
+					//evalua el margin y dependiendo la posicion corre el boton Recuperabilidad 
+					if (left == 143.5) {
+						$('#subcaractButtonRecuperabilidad').animate({
+							'margin-left' : '336'
+						}, 'slow');
+					} else {
+						$('#subcaractButtonRecuperabilidad').animate({
+							'margin-left' : '0'
+						}, 'slow');
+					}
+
+					//cambia el icono cuando se clickea el boton
+					$(this).find('i').toggleClass('glyphicon-import')
+							.toggleClass('glyphicon-save');
+
+				});
+		
+		//Oculta y muestra las opciones de caracteristicas de calidad --> subcaract Comprensibilidad
+		$('#subcaractButtonComprensibilidad').click(
+				function() {
+
+					//Muestra/oculta las preguntas de Recuperabilidad
+					$('#preguntasComprensibilidad').toggle("slow");
+
+					//saca el margin que tiene actualmente
+					var left = $("#subcaractButtonComprensibilidad").offset().left;
+
+					//evalua el margin y dependiendo la posicion corre el boton Recuperabilidad 
+					if (left == 143.5) {
+						$('#subcaractButtonComprensibilidad').animate({
+							'margin-left' : '336'
+						}, 'slow');
+					} else {
+						$('#subcaractButtonComprensibilidad').animate({
+							'margin-left' : '0'
+						}, 'slow');
+					}
+
+					//cambia el icono cuando se clickea el boton
+					$(this).find('i').toggleClass('glyphicon-import')
+							.toggleClass('glyphicon-save');
+
+				});
+				
+		//Oculta y muestra las opciones de caracteristicas de calidad --> subcaract Atractividad
+		$('#subcaractButtonAtractividad').click(
+				function() {
+
+					//Muestra/oculta las preguntas de Recuperabilidad
+					$('#preguntasAtractividad').toggle("slow");
+
+					//saca el margin que tiene actualmente
+					var left = $("#subcaractButtonAtractividad").offset().left;
+
+					//evalua el margin y dependiendo la posicion corre el boton Recuperabilidad 
+					if (left == 143.5) {
+						$('#subcaractButtonAtractividad').animate({
+							'margin-left' : '336'
+						}, 'slow');
+					} else {
+						$('#subcaractButtonAtractividad').animate({
+							'margin-left' : '0'
+						}, 'slow');
+					}
+
+					//cambia el icono cuando se clickea el boton
+					$(this).find('i').toggleClass('glyphicon-import')
+							.toggleClass('glyphicon-save');
+
+				});
+				
+		$("[id='subcaractButtonTiempo de Comportamiento']").click(
+				function() {
+
+					//Muestra/oculta las preguntas de Tolerancia a fallas
+					$("[id='preguntasTiempo de Comportamiento']").toggle("slow");
+
+					//saca el margin que tiene actualmente
+					var left = $("[id='subcaractButtonTiempo de Comportamiento']").offset().left;
+
+					//evalua el margin y dependiendo la posicion corre el boton Tolerancia a fallas 
+					if (left == 143.5) {
+						$("[id='subcaractButtonTiempo de Comportamiento']").animate({
+							'margin-left' : '336'
+						}, 'slow');
+					} else {
+						$("[id='subcaractButtonTiempo de Comportamiento']").animate({
+							'margin-left' : '0'
+						}, 'slow');
+					}
+
+					//cambia el icono cuando se clickea el boton
+					$(this).find('i').toggleClass('glyphicon-import')
+							.toggleClass('glyphicon-save');
+
+				});
+
+		//Oculta y muestra las opciones de caracteristicas de calidad --> subcaract Adaptabilidad
+		$('#subcaractButtonAdaptabilidad').click(
+				function() {
+
+					//Muestra/oculta las preguntas de Recuperabilidad
+					$('#preguntasAdaptabilidad').toggle("slow");
+
+					//saca el margin que tiene actualmente
+					var left = $("#subcaractButtonAdaptabilidad").offset().left;
+
+					//evalua el margin y dependiendo la posicion corre el boton Recuperabilidad 
+					if (left == 143.5) {
+						$('#subcaractButtonAdaptabilidad').animate({
+							'margin-left' : '336'
+						}, 'slow');
+					} else {
+						$('#subcaractButtonAdaptabilidad').animate({
+							'margin-left' : '0'
+						}, 'slow');
+					}
+
+					//cambia el icono cuando se clickea el boton
+					$(this).find('i').toggleClass('glyphicon-import')
+							.toggleClass('glyphicon-save');
+
+				});
+				
+		$("[id='subcaractButtonCapacidad de Instalación']").click(
+				function() {
+
+					//Muestra/oculta las preguntas de Tolerancia a fallas
+					$("[id='preguntasCapacidad de Instalación']").toggle("slow");
+
+					//saca el margin que tiene actualmente
+					var left = $("[id='subcaractButtonCapacidad de Instalación']").offset().left;
+
+					//evalua el margin y dependiendo la posicion corre el boton Tolerancia a fallas 
+					if (left == 143.5) {
+						$("[id='subcaractButtonCapacidad de Instalación']").animate({
+							'margin-left' : '336'
+						}, 'slow');
+					} else {
+						$("[id='subcaractButtonCapacidad de Instalación']").animate({
+							'margin-left' : '0'
+						}, 'slow');
+					}
+
+					//cambia el icono cuando se clickea el boton
+					$(this).find('i').toggleClass('glyphicon-import')
+							.toggleClass('glyphicon-save');
+
+				});
+		
+		
+		//Oculta y muestra las opciones de caracteristicas de restricciones --> subcaract Precisión
+		//Precisión VIENE CON UN ESPACIO DESDE LA BD
+		$("[id='subcaractButtonPrecisión ']").click(
+				function() {
+
+					//Muestra/oculta las preguntas de Precisión
+					$("[id='preguntasPrecisión ']").toggle("slow");
+
+					//saca el margin que tiene actualmente
+					var left = $("[id='subcaractButtonPrecisión ']").offset().left;
+
+					//evalua el margin y dependiendo la posicion corre el boton Precisión
+					if (left == 143.5) {
+						$("[id='subcaractButtonPrecisión ']").animate({
+							'margin-left' : '336'
+						}, 'slow');
+					} else {
+						$("[id='subcaractButtonPrecisión ']").animate({
+							'margin-left' : '0'
+						}, 'slow');
+					}
+
+					//cambia el icono cuando se clickea el boton
+					$(this).find('i').toggleClass('glyphicon-import')
+							.toggleClass('glyphicon-save');
+
+				});
+		
+		//Oculta y muestra las opciones de caracteristicas de restricciones --> subcaract Interoperabilidad
+		$('#subcaractButtonInteroperabilidad').click(
+				function() {
+
+					//Muestra/oculta las preguntas de Interoperabilidad
+					$('#preguntasInteroperabilidad').toggle("slow");
+
+					//saca el margin que tiene actualmente
+					var left = $("#subcaractButtonInteroperabilidad").offset().left;
+
+					//evalua el margin y dependiendo la posicion corre el boton Interoperabilidad 
+					if (left == 143.5) {
+						$('#subcaractButtonInteroperabilidad').animate({
+							'margin-left' : '336'
+						}, 'slow');
+					} else {
+						$('#subcaractButtonInteroperabilidad').animate({
+							'margin-left' : '0'
+						}, 'slow');
+					}
+
+					//cambia el icono cuando se clickea el boton
+					$(this).find('i').toggleClass('glyphicon-import')
+							.toggleClass('glyphicon-save');
+
+				});
+		
+		//Oculta y muestra las opciones de caracteristicas de restricciones --> subcaract Seguridad
+		$('#subcaractButtonSeguridad').click(
+				function() {
+
+					//Muestra/oculta las preguntas de Seguridad
+					$('#preguntasSeguridad').toggle("slow");
+
+					//saca el margin que tiene actualmente
+					var left = $("#subcaractButtonSeguridad").offset().left;
+
+					//evalua el margin y dependiendo la posicion corre el boton Seguridad 
+					if (left == 143.5) {
+						$('#subcaractButtonSeguridad').animate({
+							'margin-left' : '336'
+						}, 'slow');
+					} else {
+						$('#subcaractButtonSeguridad').animate({
+							'margin-left' : '0'
+						}, 'slow');
+					}
+
+					//cambia el icono cuando se clickea el boton
+					$(this).find('i').toggleClass('glyphicon-import')
+							.toggleClass('glyphicon-save');
+
+				});
+		
+		
+		//Codigo que se activa cuando se clickea el boton para agregar stakeholders a una pregunta
+		$(document).on("click", ".open-stake-preguntas", function () {
+			//saca el id de la pregunta que va a ser del formato "pregunta"+id
+			var numPreguntaId = $(this).attr('id');
+			//Se le saca la parte de pregunta para que solo quede el id
+			var preguntaId = numPreguntaId.substring(8);
+			//se arma el id de la lista de usuarios para que se muestre
+			var idListastake = "#listastake" + preguntaId;
+			// Se muestra la lista de usuarios
+			$(idListastake).slideToggle('slow');
+			// Cambia el icono
+			$(this).find('i').toggleClass('glyphicon-plus')
+			.toggleClass('glyphicon-chevron-up');
+		
 	
-	/* Cuando clickea el tacho de basura de la lista roltipo en modificacions  */
-	$(document).on('click', '.btn-del-listaroltipoMod', function(e) {
 
-		/* saca el id sacandole el texto del principio y quedandose solo con el numero */
-		var nroId = $(this).attr('id').replace(/btnIndicetiporolMod/, '');
+		});
+		
+		var encuestasPorStakeholder = [];
+		
+		// Funcion que verifica si hay preguntas para en stakeholder en la lista encuestasPorStakeholder
+		function hayPregsParaStakeholder(idstakeholderpreg){
+			
+			var existe = false;
+			
+			encuestasPorStakeholder.forEach( function(valor, indice) {
+			    if (valor[0] == idstakeholderpreg){
 
-		var borrarLi = "#listIndicetiporolMod" + nroId;
-		/* Oculta el LI que tiene el mismo numero de id que el boton que se apreto */
-		$(borrarLi).hide("slow");
+			    	existe = true;
+			    }
+   			});
+			return existe;
+		
+		};
+			
+		
+		
+		// Funcion que verifica en que numero de indice esta el stakeholder en la lista encuestasPorStakeholder
+		function indicePregsParaStakeholder(idstakeholderpreg){
+			
+			var indiceEnLista = 0;
+			encuestasPorStakeholder.forEach( function(valor, indice) {
+			    if (valor[0] == idstakeholderpreg){
+			    	indiceEnLista = indice;
+			    }
+			});
+			return indiceEnLista
+		};
+		
 
-		console.log(nroId);
-		console.log(listaTipoRol);
-		/* Se multiplica el nroId por dos ya que en la lista se guarda tipo y rol en diferentes posiciones */
-		nroId = nroId * 2;
-		var idTipo = nroId;
-		var idRol = nroId + 1;
-		/* Se le pone una N despues del id cuando el LI esta oculto */
-		listaTipoRol[idTipo] = listaTipoRol[idTipo] + "N";
-		listaTipoRol[idRol] = listaTipoRol[idRol] + "N";
-		$("#formModificarSHlistaTipoRol").val(listaTipoRol);
-		console.log(listaTipoRol);
+		// Funcion que verificaque exista la pregunta para el stakeholder en encuestasPorStakeholder
+		function existePregParaStakeholder(indiceEnLista, pregstakeholderpreg){
+			
+				var existe = false;
+				
+				var listadePreguntas = []
+				listadePreguntas = encuestasPorStakeholder[indiceEnLista];
+				listadePreguntas.forEach( function(valor, indice) {
 
-	});
+				    if (valor == pregstakeholderpreg){
+				    	existe = true;
+				    }
+				});
+
+				return existe;
+				
+		};
+		
+		// Funcion que borra la pregunta para el stakeholder en encuestasPorStakeholder
+		function borrarPreguntaStakeholder(indiceEnLista, pregstakeholderpreg){
+			
+				var indiceAux;
+				
+				var listadePreguntas = [];
+				//saca el indice en el que esta la pregunta dentro de la lista de preguntas para el stakehodler
+				listadePreguntas = encuestasPorStakeholder[indiceEnLista];
+				listadePreguntas.forEach( function(valor, indice) {
+
+				    if (valor == pregstakeholderpreg){
+				    	indiceAux = indice;
+				    }
+				    				    
+				});
+				//saca la pregunta de la lista de pregunta para stakeholder
+				encuestasPorStakeholder[indiceEnLista].splice(indiceAux,1);
+				
+				//si la lista quedo solo con el numero de stakeholder y sin pregutnas, borra el stakeholder
+				if (encuestasPorStakeholder[indiceEnLista].length === 1){
+					encuestasPorStakeholder.splice(indiceEnLista,1);
+				}
+				
+				
+		};
+			
+		
+		
+		//Cuando se aprieta para agregar una pregunta a un stakeholder
+		$(".btn-asociar-pregstake").click(function(){
+			
+			
+			var preguntasPorStakeholder = [];
+			
+			//get del id stakeholder
+			var idstakeholder = $(this).attr('data-idStakeholderpreg');
+			var prefijoid = "ID_STAKE:";
+			var idstakeholderpreg = prefijoid.concat(idstakeholder);
+			
+			//get de la pregunta
+			var pregstakeholderpreg = $(this).attr('data-pregStakeholderpreg');
+			//Pongo en lugar de coma el caracter ^ porque en java se pasa todo como un string separados en coma. Entonces si la pregunta
+			// tiene una , lo va a tomar como dos preguntas separadas.
+			pregstakeholderpreg = pregstakeholderpreg.replace(/,/g , "^");
+			
+
+			var quees= hayPregsParaStakeholder(idstakeholderpreg);
+
+
+			if (hayPregsParaStakeholder(idstakeholderpreg) === false){
+				
+				$(this).toggleClass('btn-preguntas')
+				.toggleClass('btn-preguntas-minus');
+				
+				$(this).find('i').toggleClass('glyphicon-plus')
+				.toggleClass('glyphicon-remove');
+		
+				preguntasPorStakeholder.push(idstakeholderpreg);
+				preguntasPorStakeholder.push(pregstakeholderpreg);
+				encuestasPorStakeholder.push(preguntasPorStakeholder);
+			}
+			else{
+
+				
+				indiceEnLista = indicePregsParaStakeholder(idstakeholderpreg);
+
+				
+				if (existePregParaStakeholder(indiceEnLista, pregstakeholderpreg) === false){
+					
+					encuestasPorStakeholder[indiceEnLista].push(pregstakeholderpreg);	
+					
+					$(this).toggleClass('btn-preguntas')
+					.toggleClass('btn-preguntas-minus');
+					
+					$(this).find('i').toggleClass('glyphicon-plus')
+					.toggleClass('glyphicon-remove');
+					
+				}
+				else{
+					
+					borrarPreguntaStakeholder(indiceEnLista, pregstakeholderpreg);
+					
+					$(this).toggleClass('btn-preguntas')
+					.toggleClass('btn-preguntas-minus');
+					
+					$(this).find('i').toggleClass('glyphicon-plus')
+					.toggleClass('glyphicon-remove');
+					
+				}
+				
+			}
+			
+			console.log(encuestasPorStakeholder);
+			
+		});
+		
+		// INICIALIZA MODAL CALIDAD
+		$("#cerrarModalCalidad2").click(
+				function() {
+					
+					// Cambia el icono 
+					var iSelector = $('.btn-asociar-pregstake').find('i:first');
+
+				    if(iSelector.hasClass('glyphicon-remove')) {
+				        iSelector.removeClass('glyphicon-remove')
+				        iSelector.addClass('glyphicon-plus')
+				    }
+				    
+				    // Pone la clase en gris de nuevo
+				    var iSelector = $('.list-stake-asociados').find('button');
+
+				    if(iSelector.hasClass('btn-preguntas')) {
+				        iSelector.removeClass('btn-preguntas')
+				        iSelector.addClass('btn-preguntas-minus')
+				    }
+				    
+				    //Verifica si los usuarios estan ocultos. Si no lo estan, los oculta				    
+				    if ($('.list-stake-asociados').is(":visible")){
+				    	$('.list-stake-asociados').hide();
+				    }
+				 			  			    
+				    
+				  //Verifica si las preguntas estan ocultas. Si no lo estan, las oculta			    
+				    if ($('.preguntas-por-subcaract').is(":visible")){
+				    	$('.preguntas-por-subcaract').hide();
+				    }
+
+				  	// Vuelve a la posicion normal el botton de subcaracteristica
+				    $('.subcaracteristica-button').animate({
+						'margin-left' : '0'
+					}, 'slow');
+				    
+				    
+				    //Cambia el icono que esta al lado del boton subcaracteristica
+				    var iSelector = $('.subcaracteristica-button').find('i:first');
+
+				    if(iSelector.hasClass('glyphicon-save')) {
+				        iSelector.removeClass('glyphicon-save')
+				        iSelector.addClass('glyphicon-import')
+				    }			    
+				    
+				    //Cambia el icono del botton que permite mostrar los usuarios a quien asignar preguntas
+				    var iSelector = $('.open-stake-preguntas').find('i:first');
+
+				    if(iSelector.hasClass('glyphicon-chevron-up')) {
+				        iSelector.removeClass('glyphicon-chevron-up')
+				        iSelector.addClass('glyphicon-plus')
+				    }
+				    
+				    //Inicializa la lista de encuestasPorStakeholder
+				    encuestasPorStakeholder = [];
+				    
+				    
+		});
+		
+		// INICIALIZA MODAL RESRICCION
+		$("#cerrarModalRestricciones2").click(
+				function() {
+					
+					// Cambia el icono 
+					var iSelector = $('.btn-asociar-pregstake').find('i:first');
+
+				    if(iSelector.hasClass('glyphicon-remove')) {
+				        iSelector.removeClass('glyphicon-remove')
+				        iSelector.addClass('glyphicon-plus')
+				    }
+				    
+				    // Pone la clase en gris de nuevo
+				    var iSelector = $('.list-stake-asociados').find('button');
+
+				    if(iSelector.hasClass('btn-preguntas')) {
+				        iSelector.removeClass('btn-preguntas')
+				        iSelector.addClass('btn-preguntas-minus')
+				    }
+				    
+				    //Verifica si los usuarios estan ocultos. Si no lo estan, los oculta				    
+				    if ($('.list-stake-asociados').is(":visible")){
+				    	$('.list-stake-asociados').hide();
+				    }
+				 			  			    
+				    
+				  //Verifica si las preguntas estan ocultas. Si no lo estan, las oculta			    
+				    if ($('.preguntas-por-subcaract').is(":visible")){
+				    	$('.preguntas-por-subcaract').hide();
+				    }
+
+				  	// Vuelve a la posicion normal el botton de subcaracteristica
+				    $('.subcaracteristica-button').animate({
+						'margin-left' : '0'
+					}, 'slow');
+				    
+				    
+				    //Cambia el icono que esta al lado del boton subcaracteristica
+				    var iSelector = $('.subcaracteristica-button').find('i:first');
+
+				    if(iSelector.hasClass('glyphicon-save')) {
+				        iSelector.removeClass('glyphicon-save')
+				        iSelector.addClass('glyphicon-import')
+				    }			    
+				    
+				    //Cambia el icono del botton que permite mostrar los usuarios a quien asignar preguntas
+				    var iSelector = $('.open-stake-preguntas').find('i:first');
+				    
+				    if(iSelector.hasClass('glyphicon-chevron-up')) {
+				        iSelector.removeClass('glyphicon-chevron-up')
+				        iSelector.addClass('glyphicon-plus')
+				    }
+				    
+				    //Inicializa la lista de encuestasPorStakeholder
+				    encuestasPorStakeholder = [];
+				    
+				    
+		});
+		
+		
+		$("#crearModalCalidad").click(
+				function(){	
+					$("#encuestasPorStakeholderCalidad").val(encuestasPorStakeholder);
 	
+				});
+		
+		$("#crearModalRestricciones").click(
+				function(){
+					$("#encuestasPorStakeholderRestricciones").val(encuestasPorStakeholder);
+					
+				});
+		
 	</script>
 
 </body>

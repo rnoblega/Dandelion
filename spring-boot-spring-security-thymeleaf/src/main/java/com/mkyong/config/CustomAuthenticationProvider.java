@@ -22,13 +22,10 @@ public class CustomAuthenticationProvider implements AuthenticationProvider{
 	@Autowired
 	private UsuarioService userService;
 	
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
-	
 	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-			  String username = authentication.getName();
-		      String password = (String) authentication.getCredentials();
-	 
+		    String username = authentication.getName();
+	        String password = (String) authentication.getCredentials();
+	       
 	        Usuario user = userService.findUserByName(username);
 	        
 	        PasswordEncoder encoder = new BCryptPasswordEncoder();

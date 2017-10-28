@@ -1,5 +1,6 @@
 package com.mkyong.entity;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
@@ -11,8 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -52,6 +51,9 @@ public class Proyecto {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "idProyecto")
 	private List<Stakeholder> stakeholderList;
+	
+	@OneToMany(mappedBy = "idProyecto")
+    private Collection<Plantilla> plantillaCollection;
 
 	public int getId() {
 		return id;
@@ -108,6 +110,16 @@ public class Proyecto {
 	public void setStakeholderList(List<Stakeholder> stakeholderList) {
 		this.stakeholderList = stakeholderList;	
 	}
+
+	public Collection<Plantilla> getPlantillaCollection() {
+		return plantillaCollection;
+	}
+
+	public void setPlantillaCollection(Collection<Plantilla> plantillaCollection) {
+		this.plantillaCollection = plantillaCollection;
+	}
+	
+	
 	
 	
 }
